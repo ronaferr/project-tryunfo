@@ -5,9 +5,22 @@ class Form extends React.Component {
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2,
-      cardAttr3, cardImage, cardRare, cardTrunfo, /* hasTrunfo, */
+      cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick,
     } = this.props;
+    let elemento;
+    if (hasTrunfo) {
+      elemento = <p>Você já tem um Super Trunfo em seu baralho</p>;
+    } else {
+      elemento = (<input
+        data-testid="trunfo-input"
+        type="checkbox"
+        name="cardTrunfo"
+        checked={ cardTrunfo }
+        onChange={ onInputChange }
+      />);
+    }
+
     return (
       <form onSubmit={ onSaveButtonClick }>
         <fieldset>
@@ -69,14 +82,7 @@ class Form extends React.Component {
             <option>raro</option>
             <option>muito raro</option>
           </select>
-          <input
-            data-testid="trunfo-input"
-            type="checkbox"
-            name="cardTrunfo"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-          Super Trybe Trunfo
+          { elemento }
         </fieldset>
         <button
           data-testid="save-button"
@@ -100,7 +106,7 @@ Form.propTypes = {
   cardImage: PropTypes.string,
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
-  /* hasTrunfo: PropTypes.bool, */
+  hasTrunfo: PropTypes.bool,
   isSaveButtonDisabled: PropTypes.bool,
   onInputChange: PropTypes.func,
   onSaveButtonClick: PropTypes.func,
@@ -115,7 +121,7 @@ Form.defaultProps = {
   cardImage: <p>Sem valor</p>,
   cardRare: <p>Sem valor</p>,
   cardTrunfo: <p>Sem valor</p>,
-  /* hasTrunfo: <p>Sem valor</p>, */
+  hasTrunfo: <p>Sem valor</p>,
   isSaveButtonDisabled: <p>Sem valor</p>,
   onInputChange: <p>Sem valor</p>,
   onSaveButtonClick: <p>Sem valor</p>,

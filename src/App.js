@@ -99,6 +99,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ cardsSalvos.some((card) => card.cardTrunfo === true) }
         />
         <Card
           cardName={ cardName }
