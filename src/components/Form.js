@@ -9,7 +9,7 @@ class Form extends React.Component {
       isSaveButtonDisabled, onInputChange, onSaveButtonClick,
     } = this.props;
     return (
-      <form>
+      <form onSubmit={ onSaveButtonClick }>
         <fieldset>
           Nome
           <input
