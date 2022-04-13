@@ -16,10 +16,12 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       cardsSalvos: [],
+      cardsFiltrados: [],
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
     this.removeCard = this.removeCard.bind(this);
+    this.filtrarCard = this.filtrarCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -80,7 +82,6 @@ class App extends React.Component {
   }
 
   removeCard(cardRemove) {
-    console.log('foi');
     this.setState((prevState) => ({
       cardsSalvos: prevState.cardsSalvos.filter(
         (cards) => cards.cardName !== cardRemove.cardName,
@@ -88,12 +89,21 @@ class App extends React.Component {
     }));
   }
 
+  filtrarCard(event) {
+    event.preventDefault();
+    this.setState({
+      cardsFiltrados: event.target.value,
+    });
+  }
+
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2,
       cardAttr3, cardImage, cardRare, cardTrunfo,
-      isSaveButtonDisabled, cardsSalvos,
+      isSaveButtonDisabled, cardsSalvos, cardsFiltrados,
     } = this.state;
+    const filtro = cardsSalvos.filter((cardsSavo) => cardsSavo.cardName
+      .includes(cardsFiltrados));
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -121,8 +131,14 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <input
+          type="text"
+          data-testid="name-filter"
+          placeholder="Busque o nome da Card"
+          onChange={ this.filtrarCard }
+        />
         <h2>Cards Salvos</h2>
-        {cardsSalvos.map((card) => (
+        {filtro.map((card) => (
           <div key={ card.cardName }>
             <Card
               cardName={ card.cardName }
