@@ -19,6 +19,7 @@ class App extends React.Component {
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.removeCard = this.removeCard.bind(this);
   }
 
   onInputChange({ target }) {
@@ -78,6 +79,15 @@ class App extends React.Component {
     });
   }
 
+  removeCard(cardRemove) {
+    console.log('foi');
+    this.setState((prevState) => ({
+      cardsSalvos: prevState.cardsSalvos.filter(
+        (cards) => cards.cardName !== cardRemove.cardName,
+      ),
+    }));
+  }
+
   render() {
     const {
       cardName, cardDescription, cardAttr1, cardAttr2,
@@ -113,17 +123,25 @@ class App extends React.Component {
         />
         <h2>Cards Salvos</h2>
         {cardsSalvos.map((card) => (
-          <Card
-            key={ card.cardName }
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            cardTrunfo={ card.cardTrunfo }
-          />
+          <div key={ card.cardName }>
+            <Card
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+            />
+            <button
+              data-testid="delete-button"
+              type="button"
+              onClick={ () => this.removeCard(card) }
+            >
+              Excluir
+            </button>
+          </div>
         ))}
 
       </div>
