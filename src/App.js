@@ -16,7 +16,7 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
       cardsSalvos: [],
-      cardsFiltrados: [],
+      cardsFiltrados: '',
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
@@ -131,6 +131,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
         />
+        <h3>Filtro de cartas</h3>
         <input
           type="text"
           data-testid="name-filter"
