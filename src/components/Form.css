@@ -1,0 +1,25 @@
+.forms {
+  position: relative;
+}
+
+.forms .campos {
+  display: block;
+  font-family: cursive;
+  height: 400px;
+  margin-bottom: 20px;
+  position: absolute;
+  width: 90px;
+}
+
+fieldset {
+  height: 450px;
+  width: 200px;
+}
+
+.campos input {
+  margin-bottom: 10px;
+}
+
+.campos button {
+  margin-top: 20px;
+}

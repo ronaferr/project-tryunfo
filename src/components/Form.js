@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Form.css';
 
 class Form extends React.Component {
   render() {
@@ -12,87 +13,115 @@ class Form extends React.Component {
     if (hasTrunfo) {
       elemento = <p>Você já tem um Super Trunfo em seu baralho</p>;
     } else {
-      elemento = (<input
-        data-testid="trunfo-input"
-        type="checkbox"
-        name="cardTrunfo"
-        checked={ cardTrunfo }
-        onChange={ onInputChange }
-      />);
+      elemento = (
+        <label htmlFor="tryunfo">
+          Super Tryunfo
+          <input
+            id="tryunfo"
+            data-testid="trunfo-input"
+            type="checkbox"
+            name="cardTrunfo"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          />
+        </label>);
     }
-
     return (
-      <form onSubmit={ onSaveButtonClick }>
-        <fieldset>
-          Nome
-          <input
-            data-testid="name-input"
-            type="text"
-            name="cardName"
-            value={ cardName }
-            onChange={ onInputChange }
-          />
-          Descrição
-          <textarea
-            data-testid="description-input"
-            name="cardDescription"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          />
-          Atributo1
-          <input
-            data-testid="attr1-input"
-            type="number"
-            name="cardAttr1"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-          Atributo2
-          <input
-            data-testid="attr2-input"
-            type="number"
-            name="cardAttr2"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-          Atributo3
-          <input
-            data-testid="attr3-input"
-            type="number"
-            name="cardAttr3"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-          Imagem
-          <input
-            data-testid="image-input"
-            type="text"
-            name="cardImage"
-            value={ cardImage }
-            onChange={ onInputChange }
-          />
-          Raridade
-          <select
-            data-testid="rare-input"
-            name="cardRare"
-            value={ cardRare }
-            onChange={ onInputChange }
-          >
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
-          </select>
-          { elemento }
-        </fieldset>
-        <button
-          data-testid="save-button"
-          type="submit"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
-        </button>
-      </form>
+      <div className="forms">
+        <form className="campos" onSubmit={ onSaveButtonClick }>
+          <fieldset>
+            <label htmlFor="name">
+              Nome
+              <input
+                id="name"
+                data-testid="name-input"
+                type="text"
+                name="cardName"
+                value={ cardName }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="descrição">
+              Descrição
+              <br />
+              <textarea
+                id="descrição"
+                data-testid="description-input"
+                name="cardDescription"
+                value={ cardDescription }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="attr1">
+              Atributo1
+              <input
+                id="attr1"
+                data-testid="attr1-input"
+                type="number"
+                name="cardAttr1"
+                value={ cardAttr1 }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="attr2">
+              Atributo2
+              <input
+                id="attr2"
+                data-testid="attr2-input"
+                type="number"
+                name="cardAttr2"
+                value={ cardAttr2 }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="attr3">
+              Atributo3
+              <input
+                id="attr3"
+                data-testid="attr3-input"
+                type="number"
+                name="cardAttr3"
+                value={ cardAttr3 }
+                onChange={ onInputChange }
+              />
+            </label>
+            <label htmlFor="img">
+              Imagem
+              <input
+                id="img"
+                data-testid="image-input"
+                type="text"
+                name="cardImage"
+                value={ cardImage }
+                onChange={ onInputChange }
+              />
+            </label>
+            Raridade
+            <select
+              id="raridade"
+              data-testid="rare-input"
+              name="cardRare"
+              value={ cardRare }
+              onChange={ onInputChange }
+            >
+              <option>normal</option>
+              <option>raro</option>
+              <option>muito raro</option>
+            </select>
+            <br />
+            { elemento }
+            <br />
+            <button
+              data-testid="save-button"
+              type="submit"
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
+            >
+              Salvar
+            </button>
+          </fieldset>
+        </form>
+      </div>
     );
   }
 }

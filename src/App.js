@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -105,63 +106,70 @@ class App extends React.Component {
     const filtro = cardsSalvos.filter((cardsSavo) => cardsSavo.cardName
       .includes(cardsFiltrados));
     return (
-      <div>
+      <section className="page">
         <h1>Tryunfo</h1>
-        <Form
-          onInputChange={ this.onInputChange }
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          hasTrunfo={ cardsSalvos.some((card) => card.cardTrunfo === true) }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
-        <h3>Filtro de cartas</h3>
-        <input
-          type="text"
-          data-testid="name-filter"
-          placeholder="Busque o nome da Card"
-          onChange={ this.filtrarCard }
-        />
+        <section className="addCard">
+          <Form
+            onInputChange={ this.onInputChange }
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
+            hasTrunfo={ cardsSalvos.some((card) => card.cardTrunfo === true) }
+          />
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+        </section>
         <h2>Cards Salvos</h2>
-        {filtro.map((card) => (
-          <div key={ card.cardName }>
-            <Card
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
+        <section className="cardsSalvos">
+          <div className="filtro">
+            <h3>Filtro de cartas</h3>
+            <input
+              type="text"
+              data-testid="name-filter"
+              placeholder="Busque o nome da Card"
+              onChange={ this.filtrarCard }
             />
-            <button
-              data-testid="delete-button"
-              type="button"
-              onClick={ () => this.removeCard(card) }
-            >
-              Excluir
-            </button>
           </div>
-        ))}
-
-      </div>
+          <div className="cardsList">
+            {filtro.map((card) => (
+              <div key={ card.cardName }>
+                <Card
+                  cardName={ card.cardName }
+                  cardDescription={ card.cardDescription }
+                  cardAttr1={ card.cardAttr1 }
+                  cardAttr2={ card.cardAttr2 }
+                  cardAttr3={ card.cardAttr3 }
+                  cardImage={ card.cardImage }
+                  cardRare={ card.cardRare }
+                  cardTrunfo={ card.cardTrunfo }
+                />
+                <button
+                  data-testid="delete-button"
+                  type="button"
+                  onClick={ () => this.removeCard(card) }
+                >
+                  Excluir
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      </section>
     );
   }
 }
