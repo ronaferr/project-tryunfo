@@ -9,23 +9,6 @@ class Form extends React.Component {
       cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo,
       isSaveButtonDisabled, onInputChange, onSaveButtonClick,
     } = this.props;
-    let elemento;
-    if (hasTrunfo) {
-      elemento = <p>Você já tem um Super Trunfo em seu baralho</p>;
-    } else {
-      elemento = (
-        <label htmlFor="tryunfo">
-          Super Tryunfo
-          <input
-            id="tryunfo"
-            data-testid="trunfo-input"
-            type="checkbox"
-            name="cardTrunfo"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>);
-    }
     return (
       <div className="forms">
         <form className="campos" onSubmit={ onSaveButtonClick }>
@@ -108,9 +91,27 @@ class Form extends React.Component {
               <option>raro</option>
               <option>muito raro</option>
             </select>
-            <br />
-            { elemento }
-            <br />
+            <div>
+              { hasTrunfo
+                ? (
+                  <p
+                    className="jatem"
+                  >
+                    Você já tem um Super Trunfo em seu baralho
+                  </p>)
+                : (
+                  <label htmlFor="tryunfo">
+                    Super Tryunfo
+                    <input
+                      id="tryunfo"
+                      data-testid="trunfo-input"
+                      type="checkbox"
+                      name="cardTrunfo"
+                      checked={ cardTrunfo }
+                      onChange={ onInputChange }
+                    />
+                  </label>)}
+            </div>
             <button
               data-testid="save-button"
               type="submit"

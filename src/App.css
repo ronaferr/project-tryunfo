@@ -1,12 +1,40 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+body {
+  font-family: cursive;
+}
+
 .page {
-  background-color: black;
+  background-color: #030303;
 }
 
 .addCard {
-  background-color: gray;
+  background-color: #030303;
+  border: 2px solid darkgray;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px gainsboro;
   display: flex;
+  height: 550px;
   justify-content: space-between;
   margin-left: 30px;
   margin-right: 30px;
@@ -14,9 +42,9 @@
 }
 
 .cardsSalvos {
-  background-color: gray;
+  background-color: 030303;
+  border: 2px solid darkgray;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px gainsboro;
   display: flex;
   margin-left: 30px;
   margin-right: 30px;
@@ -33,12 +61,28 @@
 h1, h2 {
   color: antiquewhite;
   font-family: cursive;
-  font-size: 35px;
   padding-bottom: 20px;
   padding-top: 20px;
   text-align: center;
 }
 
+h1 {
+  font-size: 55px;
+}
+
+h2 {
+  font-size: 45px;
+}
+
+h3 {
+  color: lightgray;
+  margin-bottom: 10px;
+}
+
 .filtro {
   margin-right: 20px;
+}
+
+.btnDelete {
+  background-color: red;
 }

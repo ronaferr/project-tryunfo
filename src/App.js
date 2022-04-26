@@ -161,6 +161,7 @@ class App extends React.Component {
                 <button
                   data-testid="delete-button"
                   type="button"
+                  className="btnDelete"
                   onClick={ () => this.removeCard(card) }
                 >
                   Excluir
